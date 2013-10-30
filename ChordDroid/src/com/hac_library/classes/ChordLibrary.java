@@ -327,4 +327,5 @@ public class ChordLibrary {
 		baseChords.put("Bdim7", new Position[]{new Position(0, new int[]{-1, -1, 0, 1, 0, 1}, new int[]{-1, -1, -1, 1, -1, 2}), null});
 		baseChords.put("Baug", new Position[]{new Position(0, new int[]{-1, 2, 5, 4, 4, 3}, new int[]{-1, 1, 4, 2, 3, 1}), null});
 	}
+
 }

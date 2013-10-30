@@ -16,7 +16,8 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
 
 	private SurfaceHolder holder;
 	private String chordName = null;
-
+	private Chord chord = null;
+	
 	public ChordSurfaceView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
@@ -73,6 +74,13 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else if (chord != null) {
+			try {
+				DrawHelper.drawChord(canvas, chord);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -86,4 +94,9 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
 		onDrawing(holder);
 	}
 
+	public void drawChord(Chord chord) {
+		this.chordName = null;
+		this.chord = chord;
+		onDrawing(holder);
+	}
 }
