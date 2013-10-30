@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+        <com.hac_library.components.ChordSurfaceView
+            android:id="@+id/chord2"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_toRightOf="@+id/chord1" />
+
+        <com.hac_library.components.ChordSurfaceView
+            android:id="@+id/chord1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/chord2"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="70dp" />
+        
+</RelativeLayout>
