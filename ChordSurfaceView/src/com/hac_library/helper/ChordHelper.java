@@ -5,10 +5,37 @@ import com.hac_library.classes.Chord;
 public class ChordHelper {
 	/**
 	 * Transpose a chord with distance
-	 * @param distance value from -12 to 12
-	 * @return Chord
+	 * 
+	 * @param chord
+	 * @param distance
+	 *            value from -12 to 12
 	 */
-	public static Chord transpose(int distance) {
+	public static void transpose(Chord chord, int distance) {
 		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * Move fret: -1 14 15 12 14 12 => -1 3 4 1 3 1
+	 * 
+	 * @param frets
+	 */
+	public static void recudeFretPosition(int[] frets) {
+		int min = 99;
+
+		// First find the min
+		for (int i = 0; i <= 5; ++i) {
+			if (frets[i] > -1 && frets[i] < min) {
+				min = frets[i];
+			}
+		}
+
+		if (min > 0) {
+			// Subtract all for (min - 1)
+			for (int i = 0; i <= 5; ++i) {
+				if (frets[i] > -1) {
+					frets[i] -= (min - 1);
+				}
+			}
+		}
 	}
 }

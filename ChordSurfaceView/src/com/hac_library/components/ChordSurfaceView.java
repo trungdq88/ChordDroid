@@ -8,27 +8,27 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
+import com.hac_library.classes.BaseChord;
 import com.hac_library.classes.Chord;
 import com.hac_library.helper.DrawHelper;
-
 
 public class ChordSurfaceView extends SurfaceView implements Callback {
 
 	private SurfaceHolder holder;
 	private Chord chord;
-	
+
 	public ChordSurfaceView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		// TODO Auto-generated constructor stub
 		holder = this.getHolder();
-        holder.addCallback(this);
+		holder.addCallback(this);
 	}
 
 	public ChordSurfaceView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
 		holder = this.getHolder();
-        holder.addCallback(this);
+		holder.addCallback(this);
 	}
 
 	@Override
@@ -46,38 +46,43 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
 	@Override
 	public void surfaceDestroyed(SurfaceHolder arg0) {
 		// TODO Auto-generated method stub
-		
-	}
-	public void onDrawing(SurfaceHolder holder) {
-        Canvas canvas = holder.lockCanvas();
-        if (canvas == null) {
-            Log.i("Debug", "canvas is null");
-        }
-        else {
-            onDrawing(canvas);
-            holder.unlockCanvasAndPost(canvas);
-        }
-    }
 
-    private void onDrawing(Canvas canvas) {
-    	int[] frets = new int[]{0,1,2,2,0,0};
-    	int[] fingers = new int[]{0,1,3,2,0,0};
-    	Chord c = new Chord("C#m7", 1, frets, fingers);
-    	try {
+	}
+
+	public void onDrawing(SurfaceHolder holder) {
+		Canvas canvas = holder.lockCanvas();
+		if (canvas == null) {
+			Log.i("Debug", "canvas is null");
+		} else {
+			onDrawing(canvas);
+			holder.unlockCanvasAndPost(canvas);
+		}
+	}
+
+	private void onDrawing(Canvas canvas) {
+		// int[] frets = new int[]{0,1,2,2,0,0};
+		// int[] fingers = new int[]{0,1,3,2,0,0};
+		String myChord = "Eaug";
+		Chord c = new Chord(myChord,
+				BaseChord.baseChords.get(myChord)[0].getPosition(),
+				BaseChord.baseChords.get(myChord)[0].getFrets(),
+				BaseChord.baseChords.get(myChord)[0].getFingers());
+		try {
 			DrawHelper.drawChord(canvas, c);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
+	}
 
-    /**
-     * Draw new chord to the Surface
-     * @param chord
-     */
-    public void reDraw(Chord chord) {
-    	this.chord = chord;
-        onDrawing(holder);
-    }
-    
+	/**
+	 * Draw new chord to the Surface
+	 * 
+	 * @param chord
+	 */
+	public void reDraw(Chord chord) {
+		this.chord = chord;
+		onDrawing(holder);
+	}
+
 }

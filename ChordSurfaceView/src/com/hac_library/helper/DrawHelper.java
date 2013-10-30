@@ -15,7 +15,7 @@ public class DrawHelper {
 	 * 
 	 * @param canvas
 	 */
-	public static void drawBaseLines(Canvas canvas) {
+	public static void drawBaseLines(Canvas canvas, int position) {
 		int height = canvas.getHeight();
 		int width = canvas.getWidth();
 
@@ -38,7 +38,11 @@ public class DrawHelper {
 		// Draw the Nut (The first fret wire - the big line)
 		Paint paint = new Paint();
 		paint.setColor(Color.BLACK);
-		paint.setStrokeWidth(firstFretStrokeWidth);
+		if (position <= 1) {
+			paint.setStrokeWidth(firstFretStrokeWidth);
+		} else {
+			paint.setStrokeWidth(fretStrokeWidth);
+		}
 		paint.setAntiAlias(true);
 		canvas.drawLine(imageStartX, imageStartY, imageStopX, imageStartY,
 				paint);
@@ -87,9 +91,12 @@ public class DrawHelper {
 	 */
 	public static void drawFingerPosition(Canvas canvas, int stringNum,
 			int fretNum, int fingerNum) throws Exception {
-//		Log.i("Debug", "Draw: string:" + stringNum + " fret:" + fretNum + " finger:" + fingerNum);
+		// Log.i("Debug", "Draw: string:" + stringNum + " fret:" + fretNum +
+		// " finger:" + fingerNum);
 		if (stringNum > 0 && stringNum < 7 && fretNum > -2 && fretNum < 5
-				&& fingerNum > -1 && fingerNum < 5) {
+				&& fingerNum > -2 && fingerNum < 5) {
+			// Explain fingerNum > -2: to adapt jtab database.
+
 			int height = canvas.getHeight();
 			int width = canvas.getWidth();
 			float fretWidth = width * 1.0F / 8;
@@ -106,7 +113,7 @@ public class DrawHelper {
 
 			float dotTop = height * 3 / 8 + (height * 1 / 8) / 2
 					+ (fretNumPosition - 1) * fretHeight;
-			float dotLeft = width * 1 / 8 + (6 - stringNum) * fretWidth;
+			float dotLeft = width * 1 / 8 + (stringNum - 1) * fretWidth;
 			float dotRadius = fretHeight * 2 / 5;
 			float textSize = (float) Math.sqrt(height * height + width * width) / 16;
 			float textTop = dotTop + (height * 1 / 8) / 3;
@@ -154,7 +161,13 @@ public class DrawHelper {
 	 *            integer value from 1 to 20
 	 */
 	public static void drawFretPosition(Canvas canvas, int position) {
-		if (position > 0 && position < 21) {
+		if (position > -1 && position < 21) {
+
+			// Dont display fret 0
+			if (position == 0) {
+				position = 1;
+			}
+
 			int height = canvas.getHeight();
 			int width = canvas.getWidth();
 
@@ -228,14 +241,14 @@ public class DrawHelper {
 	 * @throws Exception
 	 */
 	public static void drawChord(Canvas canvas, Chord chord) throws Exception {
-		drawBaseLines(canvas);
+		drawBaseLines(canvas, chord.getPosition());
 		drawChordName(canvas, chord.getName());
 		drawFretPosition(canvas, chord.getPosition());
 		int[] frets = chord.getFrets();
+		ChordHelper.recudeFretPosition(frets);
 		int[] fingers = chord.getFingers();
 		for (int i = 0; i <= 5; ++i) {
-			drawFingerPosition(canvas, i + 1, frets[i],
-					fingers[i]);
+			drawFingerPosition(canvas, i + 1, frets[i], fingers[i]);
 		}
 	}
 }

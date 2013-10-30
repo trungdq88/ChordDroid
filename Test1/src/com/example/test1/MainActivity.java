@@ -36,9 +36,9 @@ public class MainActivity extends Activity {
 	}
 	@Override
 	protected void onResume() {
-		chord1.reDraw(new Chord("Am", 1, null, null));
-		chord2.reDraw(new Chord("Am", 1, null, null));
-		chord3.reDraw(new Chord("Bm", 1, null, null));
+		chord1.reDraw(new Chord("Am", 0, null, null));
+		chord2.reDraw(new Chord("Am", 0, null, null));
+		chord3.reDraw(new Chord("Bm", 0, null, null));
 		
 		super.onResume();
 	};

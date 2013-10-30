@@ -2,56 +2,34 @@ package com.hac_library.classes;
 
 import java.util.Arrays;
 
-public class Chord {
+
+public class Chord extends Position{
 	private String name;
-	private int position;
-	private int frets[] = new int[6];
-	private int fingers[] = new int[6];
-	
-	
-	public Chord() {
-		super();
-	}
 
 	public Chord(String name, int position, int[] frets, int[] fingers) {
-		super();
+		super(position, frets, fingers);
 		this.name = name;
-		this.position = position;
-		this.frets = frets;
-		this.fingers = fingers;
 	}
 
-	
+	public Chord(int fret, int[] frets, int[] fingers) {
+		super(fret, frets, fingers);
+	}
+
 	@Override
 	public String toString() {
-		return "Chord [name=" + name + ", position=" + position + ", frets="
-				+ Arrays.toString(frets) + ", fingers="
-				+ Arrays.toString(fingers) + "]";
+		return "Chord [name=" + name + "] Position [fret=" + getPosition() + ", frets=" + Arrays.toString(getFrets())
+				+ ", fingers=" + Arrays.toString(getFingers()) + "]";
 	}
 
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPosition() {
-		return position;
-	}
-	public void setPosition(int position) {
-		this.position = position;
-	}
-	public int[] getFingers() {
-		return fingers;
-	}
-	public void setFingers(int[] fingers) {
-		this.fingers = fingers;
-	}
+
 	
-	public int[] getFrets() {
-		return frets;
-	}
-	public void setFrets(int[] frets) {
-		this.frets = frets;
-	}
+	
+	
 }
