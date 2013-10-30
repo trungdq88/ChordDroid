@@ -1,5 +1,8 @@
 package com.example.test1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,16 +10,25 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.hac_library.classes.Chord;
+import com.hac_library.classes.ChordLibrary;
 import com.hac_library.components.ChordSurfaceView;
 
 public class MainActivity extends Activity {
 
 	ChordSurfaceView chord1, chord2, chord3;
+	
+	List<String> chords = new ArrayList<String>();
+	int currentChord = 0;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		for (String key : ChordLibrary.baseChords.keySet()) {
+			chords.add(key);
+		}
+		 
 		
 		// This button is to ChordSurfaceView.reDraw()
 		Button b1 = (Button) findViewById(R.id.button1);
@@ -25,7 +37,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				chord2.reDraw(new Chord("Am", 1, null, null));
+				chord2.reDraw(chords.get(currentChord++));
 			}
 		});
 		
@@ -36,10 +48,6 @@ public class MainActivity extends Activity {
 	}
 	@Override
 	protected void onResume() {
-		chord1.reDraw(new Chord("Am", 0, null, null));
-		chord2.reDraw(new Chord("Am", 0, null, null));
-		chord3.reDraw(new Chord("Bm", 0, null, null));
-		
 		super.onResume();
 	};
 	@Override

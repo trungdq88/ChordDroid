@@ -3,12 +3,65 @@ package com.hac_library.classes;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BaseChord {
-	public static Map<String, Position[]> baseChords = new HashMap<String, Position[]>();  
+public class ChordLibrary {
+	public static Map<String, Position[]> baseChords = new HashMap<String, Position[]>();
+	public static String[] N = new String[]{"C", "A", "G", "E", "D"};
+	public static int[] F =       new int[]{ 3,   2,   3,   2,   2};
+	public static Map<String, String> Bname = new HashMap<String, String>();
+	public static Map<String, Integer> Bfret = new HashMap<String, Integer>();
+	
 	static {
-//		baseChords.put("C", new Position[]{
-//				new Position(0, new int[]{-1, 3, 2, 0, 1, 0}, new int[]{-1, 3, 2, 0, 1, 0}),
-//				new Position(12, new int[]{-1, 15, 14, 12, 13, 12}, new int[]{-1, 4, 3, 1, 2, 1})});
+		
+		Bname.put("C", "C");
+		Bname.put("C#", "C");
+		Bname.put("Db", "C");
+		
+		Bname.put("D", "D");
+		Bname.put("D#", "D");
+		Bname.put("Eb", "D");
+		
+		Bname.put("E", "E");
+		Bname.put("F", "E");
+		Bname.put("F#", "E");
+		Bname.put("Gb", "E");
+		
+		Bname.put("G", "G");
+		Bname.put("G#", "G");
+		Bname.put("Ab", "G");
+		
+		Bname.put("A", "A");
+		Bname.put("A#", "A");
+		Bname.put("Bb", "A");
+		Bname.put("B", "A");
+		
+		////////////////////////
+		
+		Bfret.put("C", 0);
+		Bfret.put("C#", 1);
+		Bfret.put("Db", 1);
+		
+		Bfret.put("D", 0);
+		Bfret.put("D#", 1);
+		Bfret.put("Eb", 1);
+		
+		Bfret.put("E", 0);
+		Bfret.put("F", 1);
+		Bfret.put("F#", 2);
+		Bfret.put("Gb", 2);
+		
+		Bfret.put("G", 0);
+		Bfret.put("G#", 1);
+		Bfret.put("Ab", 1);
+		
+		Bfret.put("A", 0);
+		Bfret.put("A#", 1);
+		Bfret.put("Bb", 1);
+		Bfret.put("B", 2);
+		
+		
+		////////////////////////
+		
+		
 		baseChords.put("C", new Position[]{new Position(0, new int[]{-1, 3, 2, 0, 1, 0}, new int[]{-1, 3, 2, -1, 1, -1}), new Position(12, new int[]{-1, 15, 14, 12, 13, 12}, new int[]{-1, 4, 3, 1, 2, 1}), });
 		baseChords.put("Cm", new Position[]{new Position(0, new int[]{-1, 3, 1, 0, 1, -1}, new int[]{-1, 4, 2, -1, 1, -1}), new Position(12, new int[]{-1, 15, 13, 12, 13, -1}, new int[]{-1, 4, 3, 1, 2, -1}), });
 		baseChords.put("C6", new Position[]{new Position(0, new int[]{-1, 0, 2, 2, 1, 3}, new int[]{-1, -1, 2, 3, 1, 4}), new Position(12, new int[]{-1, 12, 14, 14, 13, 15}, new int[]{-1, 1, 3, 3, 2, 4}), });

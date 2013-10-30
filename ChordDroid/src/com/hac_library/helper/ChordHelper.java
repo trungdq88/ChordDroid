@@ -38,4 +38,14 @@ public class ChordHelper {
 			}
 		}
 	}
+	
+	/**
+	 * Get a chord state by name and fret position
+	 * @param name
+	 * @param position
+	 * @return Chord
+	 */
+	public static Chord getChord(String name, int position) {
+		return new Chord();
+	}
 }

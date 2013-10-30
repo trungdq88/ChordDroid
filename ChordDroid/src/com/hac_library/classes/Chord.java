@@ -14,6 +14,9 @@ public class Chord extends Position{
 	public Chord(int fret, int[] frets, int[] fingers) {
 		super(fret, frets, fingers);
 	}
+	public Chord() {
+		super();
+	}
 
 	@Override
 	public String toString() {

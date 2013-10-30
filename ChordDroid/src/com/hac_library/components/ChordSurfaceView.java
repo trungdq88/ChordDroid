@@ -8,14 +8,14 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
-import com.hac_library.classes.BaseChord;
 import com.hac_library.classes.Chord;
+import com.hac_library.classes.ChordLibrary;
 import com.hac_library.helper.DrawHelper;
 
 public class ChordSurfaceView extends SurfaceView implements Callback {
 
 	private SurfaceHolder holder;
-	private Chord chord;
+	private String chordName = null;
 
 	public ChordSurfaceView(Context context, AttributeSet attrs) {
 		super(context, attrs);
@@ -62,16 +62,17 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
 	private void onDrawing(Canvas canvas) {
 		// int[] frets = new int[]{0,1,2,2,0,0};
 		// int[] fingers = new int[]{0,1,3,2,0,0};
-		String myChord = "Eaug";
-		Chord c = new Chord(myChord,
-				BaseChord.baseChords.get(myChord)[0].getPosition(),
-				BaseChord.baseChords.get(myChord)[0].getFrets(),
-				BaseChord.baseChords.get(myChord)[0].getFingers());
-		try {
-			DrawHelper.drawChord(canvas, c);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (chordName != null) {
+			Chord c = new Chord(chordName,
+					ChordLibrary.baseChords.get(chordName)[0].getPosition(),
+					ChordLibrary.baseChords.get(chordName)[0].getFrets(),
+					ChordLibrary.baseChords.get(chordName)[0].getFingers());
+			try {
+				DrawHelper.drawChord(canvas, c);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -80,8 +81,8 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
 	 * 
 	 * @param chord
 	 */
-	public void reDraw(Chord chord) {
-		this.chord = chord;
+	public void reDraw(String chordName) {
+		this.chordName = chordName;
 		onDrawing(holder);
 	}
 

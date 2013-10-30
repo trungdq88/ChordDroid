@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.hac_library;
+package com.hac_library.chorddroid;
 
 public final class R {
     public static final class attr {
