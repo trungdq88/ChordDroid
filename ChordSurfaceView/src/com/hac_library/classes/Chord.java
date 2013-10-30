@@ -5,23 +5,30 @@ import java.util.Arrays;
 public class Chord {
 	private String name;
 	private int position;
+	private int frets[] = new int[6];
 	private int fingers[] = new int[6];
 	
 	
 	public Chord() {
 		super();
 	}
-	public Chord(String name, int position, int[] fingers) {
+
+	public Chord(String name, int position, int[] frets, int[] fingers) {
 		super();
 		this.name = name;
 		this.position = position;
+		this.frets = frets;
 		this.fingers = fingers;
 	}
+
+	
 	@Override
 	public String toString() {
-		return "Chord [name=" + name + ", position=" + position + ", fingers="
+		return "Chord [name=" + name + ", position=" + position + ", frets="
+				+ Arrays.toString(frets) + ", fingers="
 				+ Arrays.toString(fingers) + "]";
 	}
+
 	public String getName() {
 		return name;
 	}
@@ -41,11 +48,10 @@ public class Chord {
 		this.fingers = fingers;
 	}
 	
-	/**
-	 * Transpose a chord
-	 * @param distance value from -12 to 12
-	 */
-	public void transpose(int distance) {
-		throw new UnsupportedOperationException();
+	public int[] getFrets() {
+		return frets;
+	}
+	public void setFrets(int[] frets) {
+		this.frets = frets;
 	}
 }

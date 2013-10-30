@@ -2,8 +2,6 @@ package com.hac_library.components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -11,6 +9,7 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
 import com.hac_library.classes.Chord;
+import com.hac_library.helper.DrawHelper;
 
 
 public class ChordSurfaceView extends SurfaceView implements Callback {
@@ -61,21 +60,21 @@ public class ChordSurfaceView extends SurfaceView implements Callback {
     }
 
     private void onDrawing(Canvas canvas) {
-    	Log.i("Debug", "Canvas height: " + canvas.getHeight());
-    	Log.i("Debug", "Canvas height: " + canvas.getWidth());
-        if (chord.getName().equals("Am")) {
-            Paint paint = new Paint();
-            paint.setColor(Color.BLUE);
-            paint.setAntiAlias(true);
-            canvas.drawCircle(50, 50, 80, paint);
-        } else {
-            Paint paint = new Paint();
-            paint.setColor(Color.CYAN);
-            paint.setAntiAlias(true);
-            canvas.drawRect(50, 50, 100, 100, paint);
-        }
+    	int[] frets = new int[]{0,1,2,2,0,0};
+    	int[] fingers = new int[]{0,1,3,2,0,0};
+    	Chord c = new Chord("C#m7", 1, frets, fingers);
+    	try {
+			DrawHelper.drawChord(canvas, c);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
+    /**
+     * Draw new chord to the Surface
+     * @param chord
+     */
     public void reDraw(Chord chord) {
     	this.chord = chord;
         onDrawing(holder);

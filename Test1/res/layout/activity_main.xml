@@ -4,19 +4,48 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity" >
 
-        <com.hac_library.components.ChordSurfaceView
-            android:id="@+id/chord2"
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:layout_toRightOf="@+id/chord1" />
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/chord2"
+            android:layout_alignLeft="@+id/chord1"
+            android:layout_marginBottom="29dp"
+            android:onClick="changeColor"
+            android:text="@string/button" />
 
-        <com.hac_library.components.ChordSurfaceView
-            android:id="@+id/chord1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/chord2"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="70dp" />
+                <com.hac_library.components.ChordSurfaceView
+                    android:id="@+id/chord2"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/chord1" />
+
+                <com.hac_library.components.ChordSurfaceView
+                    android:id="@+id/chord1"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/button1"
+                    android:layout_marginTop="62dp" />
+
+                <com.hac_library.components.ChordSurfaceView
+                    android:id="@+id/chord3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_alignLeft="@+id/chord2"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/chord1"
+                    android:layout_toLeftOf="@+id/button2" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/chord1"
+                    android:layout_marginTop="46dp"
+                    android:text="Button" />
         
 </RelativeLayout>
