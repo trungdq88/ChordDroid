@@ -39,7 +39,6 @@ public class MainActivity extends Activity {
 				currentPos = 0;
 				String text = ((EditText) findViewById(R.id.editText1)).getText().toString();
 				chord2.drawChord(text, currentPos);
-				
 			}
 		});
 		
