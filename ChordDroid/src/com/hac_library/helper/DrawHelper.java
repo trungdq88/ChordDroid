@@ -84,16 +84,15 @@ public class DrawHelper {
 	 * @param string
 	 *            integer value from 1 to 6
 	 * @param fret
-	 *            integer value from -1 to 4
+	 *            integer value from -1 to 5
 	 * @param finger
 	 *            integer value from 0 to 4
 	 * @throws Exception
 	 */
 	public static void drawFingerPosition(Canvas canvas, int stringNum,
 			int fretNum, int fingerNum) throws Exception {
-		// Log.i("Debug", "Draw: string:" + stringNum + " fret:" + fretNum +
-		// " finger:" + fingerNum);
-		if (stringNum > 0 && stringNum < 7 && fretNum > -2 && fretNum < 5
+		 
+		if (stringNum > 0 && stringNum < 7 && fretNum > -2 && fretNum < 6
 				&& fingerNum > -2 && fingerNum < 5) {
 			// Explain fingerNum > -2: to adapt jtab database.
 
@@ -149,6 +148,8 @@ public class DrawHelper {
 
 		} else {
 			Log.i("Debug", "Parameter validate fail!");
+			Log.i("Debug", " string:" + stringNum + " fret:" + fretNum +
+					 " finger:" + fingerNum);
 			throw new Exception("Parameter validate fail!");
 		}
 	}
@@ -245,7 +246,9 @@ public class DrawHelper {
 		drawChordName(canvas, chord.getName());
 		drawFretPosition(canvas, chord.getPosition());
 		int[] frets = chord.getFrets();
-		ChordHelper.recudeFretPosition(frets);
+		ChordHelper.recudeFretPosition(frets, chord.getPosition());
+		Log.i("Debug", "position: " + chord.getPosition());
+		Log.i("Debug", "frets: " + frets[0] + " " + frets[1] + " " + frets[2] + " " + frets[3] + " " + frets[4] + " " + frets[5] + " ");
 		int[] fingers = chord.getFingers();
 		for (int i = 0; i <= 5; ++i) {
 			drawFingerPosition(canvas, i + 1, frets[i], fingers[i]);

@@ -2,6 +2,8 @@ package com.hac_library.helper;
 
 import java.util.Arrays;
 
+import android.util.Log;
+
 import com.hac_library.classes.Chord;
 import com.hac_library.classes.ChordLibrary;
 import com.hac_library.classes.Position;
@@ -23,17 +25,18 @@ public class ChordHelper {
 	 * 
 	 * @param frets
 	 */
-	public static void recudeFretPosition(int[] frets) {
+	public static void recudeFretPosition(int[] frets, int position) {
 		int min = 99;
 
-		// First find the min
+		// Find the min
 		for (int i = 0; i <= 5; ++i) {
 			if (frets[i] > -1 && frets[i] < min) {
 				min = frets[i];
 			}
 		}
-
-		if (min > 0) {
+		Log.i("Debug", "min = " + min);
+		// Only reduce for fret 12
+		if (min >= 12) {
 			// Subtract all for (min - 1)
 			for (int i = 0; i <= 5; ++i) {
 				if (frets[i] > -1) {
@@ -53,31 +56,49 @@ public class ChordHelper {
 	public static Chord getChord(String name, int position) {
 		Chord c = new Chord();
 		c.setName(name);
-		int i = Arrays.asList(ChordLibrary.N).indexOf(name.substring(0, 1));
+		String originalName = getChordBaseName(name);
+		int i = Arrays.asList(ChordLibrary.N).indexOf(originalName);
 
 		String equavilentChord = "";
 
 		if (i > -1) {
-			equavilentChord = (ChordLibrary.N[(i + position) % 5] + name
-					.substring(1, name.length()));
+			equavilentChord = (ChordLibrary.Bname
+					.get(ChordLibrary.N[(i + position) % 5]) + getChordBaseNameTail(name));
 			c.setPosition(X(i, position, 0));
 		} else {
 			i = Arrays.asList(ChordLibrary.N).indexOf(
-					ChordLibrary.Bname.get(getChordBaseName(name)));
-			equavilentChord = (ChordLibrary.N[(i + position) % 5] + getChordBaseNameTail(name));
-			c.setPosition(X(i, position,
-					ChordLibrary.Bfret.get(equavilentChord)));
+					ChordLibrary.Bname.get(originalName));
+			equavilentChord = (ChordLibrary.Bname
+					.get(ChordLibrary.N[(i + position) % 5]) + getChordBaseNameTail(name));
+			c.setPosition(X(i, position, ChordLibrary.Bfret.get(originalName)));
 		}
 
 		Position[] positions = ChordLibrary.baseChords.get(equavilentChord);
-		if (c.getPosition() > 0 && positions.length > 1) {
+		if (c.getPosition() > 0 && positions[1] != null) {
 			c.setFrets(positions[1].getFrets());
 			c.setFingers(positions[1].getFingers());
 		} else {
 			c.setFrets(positions[0].getFrets());
 			c.setFingers(positions[0].getFingers());
+			if (positions[1] == null) {
+				increaseEveryFretsByOne(c);
+			}
 		}
+		
+		
 		return c;
+	}
+
+	private static void increaseEveryFretsByOne(Chord c) {
+		int[] newFrets = new int[6];
+		for (int i = 0; i <= 5; ++i) {
+			if (c.getFrets()[i] > -1) {
+				newFrets[i] = c.getFrets()[i] + 1;
+			} else {
+				newFrets[i] = c.getFingers()[i];
+			}
+		}
+		c.setFrets(newFrets);
 	}
 
 	/**
@@ -106,7 +127,8 @@ public class ChordHelper {
 	public static String getChordBaseName(String name) {
 		String result = name.substring(0, 1);
 		if (name.length() > 1) {
-			if (name.substring(1, 2) == "#" || name.substring(1, 2) == "b") {
+			if (name.substring(1, 2).equals("#")
+					|| name.substring(1, 2).equals("b")) {
 				result += name.substring(1, 2);
 			}
 		}
@@ -122,7 +144,10 @@ public class ChordHelper {
 	public static String getChordBaseNameTail(String name) {
 		int start = 0;
 		if (name.length() > 1) {
-			if (name.substring(1, 2) == "#" || name.substring(1, 2) == "b") {
+			// Log.i("Debug", "substring: " + name.substring(1, 2) +
+			// " substring13:" + name.substring(1, 3));
+			if (name.substring(1, 2).equals("#")
+					|| name.substring(1, 2).equals("b")) {
 				start = 1;
 			}
 		}
