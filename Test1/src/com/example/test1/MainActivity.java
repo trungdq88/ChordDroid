@@ -13,14 +13,13 @@ import android.widget.EditText;
 
 import com.hac_library.classes.ChordLibrary;
 import com.hac_library.components.ChordSurfaceView;
-import com.hac_library.helper.ChordHelper;
 
 public class MainActivity extends Activity {
 
-	ChordSurfaceView chord1, chord2, chord3;
+	ChordSurfaceView chord2;
 	
 	List<String> chords = new ArrayList<String>();
-	int currentChord = 0;
+	int currentChord = -1;
 	int currentPos = 0;
 	
 	@Override
@@ -33,39 +32,47 @@ public class MainActivity extends Activity {
 		}
 		 
 		
-		// This button is to view all chord
-		Button b1 = (Button) findViewById(R.id.button1);
+		Button b1 = (Button) findViewById(R.id.btnLoad);
 		b1.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				currentPos = 0;
 				String text = ((EditText) findViewById(R.id.editText1)).getText().toString();
-				chord2.drawChord(ChordHelper.getChord(text, currentPos));
+				chord2.drawChord(text, currentPos);
 				
 			}
 		});
 		
-		Button b2 = (Button) findViewById(R.id.button2);
+		Button b2 = (Button) findViewById(R.id.btnNextPos);
 		b2.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				//Log.i("Debug", ChordHelper.getChord("E9", 1).toString());
-				String text = ((EditText) findViewById(R.id.editText1)).getText().toString();
-				chord3.drawChord(ChordHelper.getChord(text, currentPos++));
-				if (currentPos == 10) {
-					currentPos = 0;
-				}
+				chord2.nextPosition();
+			}
+		});
+		Button b3 = (Button) findViewById(R.id.btnPrevPos);
+		b3.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				chord2.prevPosition();
+			}
+		});
+		Button b4 = (Button) findViewById(R.id.btnTransNext);
+		b4.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				chord2.nextTranspose();
+			}
+		});
+		Button b5 = (Button) findViewById(R.id.btnTransPrev);
+		b5.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				chord2.prevTranspose();
 			}
 		});
 		
-		
-		chord1 = ((ChordSurfaceView) findViewById(R.id.chord1));
 		chord2 = ((ChordSurfaceView) findViewById(R.id.chord2));
-		chord3 = ((ChordSurfaceView) findViewById(R.id.chord3));
 	}
 	@Override
 	protected void onResume() {

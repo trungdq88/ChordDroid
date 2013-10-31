@@ -1,23 +1,70 @@
 package com.hac_library.helper;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.hac_library.classes.Chord;
 import com.hac_library.classes.ChordLibrary;
 import com.hac_library.classes.Position;
 
+@SuppressLint("DefaultLocale")
 public class ChordHelper {
 	/**
-	 * Transpose a chord with distance
+	 * Transpose a chord with distance, return the transposed chord name
 	 * 
-	 * @param chord
+	 * @param chordName
 	 * @param distance
 	 *            value from -12 to 12
 	 */
-	public static void transpose(Chord chord, int distance) {
-		throw new UnsupportedOperationException();
+	public static String transpose(String chordName, int distance) {
+		String chord = chordName;
+		if (chord == null) {
+			return null;
+		}
+		if (chord.isEmpty()) {
+			return null;
+		}
+		
+		chord = chord.toLowerCase();
+		// The first letter
+		chord = Character.toString(chord.charAt(0)).toUpperCase()+chord.substring(1);
+		// The letter after "/" character
+		int theChar = chord.indexOf("/");
+		if (theChar > -1) {
+			chord = chord.substring(0, theChar) + 
+					Character.toString(chord.charAt(theChar)).toUpperCase() +
+					chord.substring(theChar + 1);
+		}
+		
+		String[] sameScale = new String[]{"Db", "C#", "Eb", "D#", "Gb", "F#", "Ab", "G#", "Bb", "A#"};
+		String[] scale = new String[]{"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
+		Pattern p;
+		Matcher m;
+		p = Pattern.compile("([DEGAB]b)");
+		m = p.matcher(chord);
+		while(m.find()) {
+		    String token = m.group(1);
+		    String newValue = sameScale[(Arrays.asList(sameScale).indexOf(token) + 1)];
+		    chord = chord.replaceAll(token, newValue);
+		}
+		
+		////
+		
+		p = Pattern.compile("([CDEFGAB]#?)");
+		m = p.matcher(chord);
+		while(m.find()) {
+		    String token = m.group(1);
+		    //String newValue = sameScale[(Arrays.asList(sameScale).indexOf(token) + 1)];
+		    int i = (Arrays.asList(scale).indexOf(token) + distance) % scale.length;
+		    String newValue = scale[i < 0 ? i + scale.length : i];
+		    chord = chord.replaceAll(token, newValue);
+		}
+		
+		return chord;
 	}
 
 	/**
@@ -57,8 +104,18 @@ public class ChordHelper {
 		}
 	}
 
+	public static Chord getChord(String name) {
+		return getChord(name, 0);
+	}
+	
+	public static Chord getChord(String name, int position, int transposeDistance) {
+		String chordName = transposeDistance != 0 ? transpose(name, transposeDistance) : name;
+		Chord chord = getChord(chordName, position);
+		return chord;
+	}
+	
 	/**
-	 * Get a chord state by name and fret position
+	 * Get a chord state by name and fret position, and transpose to `transpose` distance.
 	 * 
 	 * @param name
 	 * @param position
@@ -87,11 +144,9 @@ public class ChordHelper {
 		Position[] positions = ChordLibrary.baseChords.get(equavilentChord);
 		if (c.getPosition() > 0) {
 			if (positions[1] != null) {
-				// Log.i("Debug", "Use position 1");
 				c.setFrets(positions[1].getFrets());
 				c.setFingers(positions[1].getFingers());
 			} else {
-				// Log.i("Debug", "Use position 0");
 				c.setFrets(positions[0].getFrets());
 				c.setFingers(positions[0].getFingers());
 				increaseEveryFretsByOne(c);
@@ -102,6 +157,19 @@ public class ChordHelper {
 		}
 
 		return c;
+	}
+
+	public static String simplifyName(String chordName) {
+		String chord = chordName;
+		chord = chord.toLowerCase();
+		// The first letter
+		chord = Character.toString(chord.charAt(0)).toUpperCase()+chord.substring(1);
+		int theChar = chordName.indexOf("/");
+		if (theChar > -1) {
+			return chord.substring(0, theChar);
+		} else {
+			return chord;
+		}
 	}
 
 	private static void increaseEveryFretsByOne(Chord c) {

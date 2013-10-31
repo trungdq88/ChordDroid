@@ -76,7 +76,7 @@ public class DrawHelper {
 	}
 
 	/**
-	 * Draw a black circle with a number of finger on stringNum:fretNum Finger
+	 * Draw a black circle with the finger number on stringNum:fretNum Finger
 	 * number: 0: No finger 1: Index finger 2: Middle finger 3: Ring finger 4:
 	 * Pinky finger (or baby finger)
 	 * 
@@ -242,7 +242,6 @@ public class DrawHelper {
 	 * @throws Exception
 	 */
 	public static void drawChord(Canvas canvas, Chord chord) throws Exception {
-
 		int[] frets = chord.getFrets();
 		int[] fingers = chord.getFingers();
 		ChordHelper.recudeFretPosition(frets, chord);
