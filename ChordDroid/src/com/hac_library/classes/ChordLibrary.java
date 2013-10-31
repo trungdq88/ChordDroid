@@ -109,7 +109,7 @@ public class ChordLibrary {
 		baseChords.put("D", new Position[]{new Position(0, new int[]{-1, 0, 0, 2, 3, 2}, new int[]{-1, -1, -1, 1, 3, 2}), new Position(12, new int[]{-1, 12, 12, 14, 15, 14}, new int[]{-1, 1, 1, 3, 4, 2}), });
 		baseChords.put("Dm", new Position[]{new Position(0, new int[]{-1, 0, 0, 2, 3, 1}, new int[]{-1, -1, -1, 2, 3, 1}), new Position(12, new int[]{-1, 12, 12, 14, 15, 13}, new int[]{-1, 1, 1, 3, 4, 2}), });
 		baseChords.put("D6", new Position[]{new Position(0, new int[]{-1, 0, 0, 2, 0, 2}, new int[]{-1, -1, -1, 2, -1, 3}), new Position(12, new int[]{-1, 12, 12, 14, 12, 14}, new int[]{-1, 1, 1, 3, 1, 4}), });
-		baseChords.put("Dm6", new Position[]{new Position(0, new int[]{-1, 2, 0, 2, 0, 1}, new int[]{-1, 2, -1, 3, -1, 1}), new Position(12, new int[]{-1, 14, 12, 14, 12, 1}, new int[]{-1, 3, 1, 4, 1, 2}), });
+		baseChords.put("Dm6", new Position[]{new Position(0, new int[]{-1, 2, 0, 2, 0, 1}, new int[]{-1, 2, -1, 3, -1, 1}), new Position(12, new int[]{-1, 14, 12, 14, 12, 13}, new int[]{-1, 3, 1, 4, 1, 2}), });
 		baseChords.put("D69", new Position[]{new Position(3, new int[]{-1, 5, 4, 4, 5, 5}, new int[]{-1, 2, 1, 1, 3, 4}), null});
 		baseChords.put("D7", new Position[]{new Position(0, new int[]{-1, 0, 0, 2, 1, 2}, new int[]{-1, -1, -1, 2, 1, 3}), new Position(12, new int[]{-1, 12, 12, 14, 13, 14}, new int[]{-1, 1, 1, 3, 2, 4}), });
 		baseChords.put("Dm7", new Position[]{new Position(0, new int[]{-1, -1, 0, 2, 1, 1}, new int[]{-1, -1, -1, 2, 1, 1}), new Position(12, new int[]{-1, -1, 12, 14, 13, 13}, new int[]{-1, -1, 1, 4, 2, 3}), });
@@ -120,7 +120,7 @@ public class ChordLibrary {
 		baseChords.put("D7b9", new Position[]{new Position(3, new int[]{-1, 5, 4, 5, 4, 5}, new int[]{-1, 2, 1, 3, 1, 4}), null});
 		baseChords.put("D9", new Position[]{new Position(0, new int[]{2, -1, 0, 2, 1, 0}, new int[]{2, -1, -1, 3, 1, -1}), new Position(12, new int[]{14, -1, 12, 14, 13, 12}, new int[]{4, -1, 1, 3, 2, 1}), });
 		baseChords.put("Dm9", new Position[]{new Position(0, new int[]{-1, -1, 3, 2, 1, 0}, new int[]{-1, -1, 3, 2, 1, -1}), new Position(12, new int[]{-1, -1, 15, 14, 13, 12}, new int[]{-1, -1, 4, 3, 2, 1}), });
-		baseChords.put("Dmaj9", new Position[]{new Position(0, new int[]{-1, 5, 2, 2, 2, 2}, new int[]{-1, 5, 1, 1, 1, 1}), null});
+		baseChords.put("Dmaj9", new Position[]{new Position(0, new int[]{-1, 5, 2, 2, 2, 2}, new int[]{-1, 4, 1, 1, 1, 1}), null});
 		baseChords.put("Dadd9", new Position[]{new Position(0, new int[]{-1, -1, 0, 2, 3, 0}, new int[]{-1, -1, -1, 1, 2, -1}), new Position(12, new int[]{-1, -1, 12, 14, 15, 12}, new int[]{-1, -1, 1, 3, 4, 1}), });
 		baseChords.put("D13", new Position[]{new Position(4, new int[]{-1, 5, 7, 5, 7, 7}, new int[]{-1, 1, 2, 1, 3, 4}), null});
 		baseChords.put("Dsus2", new Position[]{new Position(0, new int[]{-1, -1, 0, 2, 3, 0}, new int[]{-1, -1, -1, 1, 3, -1}), new Position(12, new int[]{-1, -1, 12, 14, 15, 12}, new int[]{-1, -1, 1, 3, 4, 1}), });
@@ -164,7 +164,7 @@ public class ChordLibrary {
 		baseChords.put("E7b9", new Position[]{new Position(0, new int[]{0, 2, 0, 1, 0, 1}, new int[]{-1, 3, -1, 1, -1, 2}), new Position(12, new int[]{12, 14, 12, 13, 12, 13}, new int[]{1, 4, 1, 3, 1, 2}), });
 		baseChords.put("E9", new Position[]{new Position(0, new int[]{0, 2, 0, 1, 0, 2}, new int[]{-1, 2, -1, 1, -1, 3}), new Position(12, new int[]{12, 14, 12, 13, 12, 14}, new int[]{1, 3, 1, 2, 1, 4}), });
 		baseChords.put("Em9", new Position[]{new Position(0, new int[]{0, 2, 0, 0, 0, 2}, new int[]{-1, 1, -1, -1, -1, 2}), new Position(12, new int[]{12, 14, 12, 12, 12, 14}, new int[]{1, 2, 1, 1, 1, 4}), });
-		baseChords.put("Emaj9", new Position[]{new Position(0, new int[]{0, 2, 1, 1, 0, 2}, new int[]{-1, 2, 1, 1, -1, 4}), new Position(12, new int[]{12, 14, 13, 13, 12, 4}, new int[]{1, 3, 2, 2, 1, 4}), });
+		baseChords.put("Emaj9", new Position[]{new Position(0, new int[]{0, 2, 1, 1, 0, 2}, new int[]{-1, 2, 1, 1, -1, 4}), new Position(12, new int[]{12, 14, 13, 13, 12, 14}, new int[]{1, 3, 2, 2, 1, 4}), });
 		baseChords.put("Eadd9", new Position[]{new Position(0, new int[]{2, 2, 2, 1, 0, 0}, new int[]{2, 3, 4, 1, -1, -1}), new Position(12, new int[]{14, 14, 14, 13, 12, 12}, new int[]{3, 3, 4, 2, 1, 1}), });
 		baseChords.put("E13", new Position[]{new Position(0, new int[]{0, 2, 0, 1, 2, 0}, new int[]{-1, 2, -1, 1, 3, -1}), new Position(12, new int[]{12, 14, 12, 13, 14, 12}, new int[]{1, 3, 1, 2, 4, 1}), });
 		baseChords.put("Esus2", new Position[]{new Position(0, new int[]{-1, 2, 4, 4, -1, 0}, new int[]{-1, 1, 3, 4, -1, -1}), new Position(12, new int[]{-1, 14, 16, 16, -1, 12}, new int[]{-1, 2, 3, 4, -1, 1}), });

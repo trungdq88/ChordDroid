@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.hac_library.classes.ChordLibrary;
 import com.hac_library.components.ChordSurfaceView;
@@ -40,7 +41,8 @@ public class MainActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				currentPos = 0;
-				chord2.drawChord(ChordHelper.getChord(chords.get(++currentChord), currentPos));
+				String text = ((EditText) findViewById(R.id.editText1)).getText().toString();
+				chord2.drawChord(ChordHelper.getChord(text, currentPos));
 				
 			}
 		});
@@ -52,7 +54,8 @@ public class MainActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				//Log.i("Debug", ChordHelper.getChord("E9", 1).toString());
-				chord3.drawChord(ChordHelper.getChord("E9", currentPos++));
+				String text = ((EditText) findViewById(R.id.editText1)).getText().toString();
+				chord3.drawChord(ChordHelper.getChord(text, currentPos++));
 				if (currentPos == 10) {
 					currentPos = 0;
 				}

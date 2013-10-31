@@ -242,14 +242,17 @@ public class DrawHelper {
 	 * @throws Exception
 	 */
 	public static void drawChord(Canvas canvas, Chord chord) throws Exception {
-		drawBaseLines(canvas, chord.getPosition());
-		drawChordName(canvas, chord.getName());
-		drawFretPosition(canvas, chord.getPosition());
+
 		int[] frets = chord.getFrets();
-		ChordHelper.recudeFretPosition(frets, chord.getPosition());
-		Log.i("Debug", "position: " + chord.getPosition());
-		Log.i("Debug", "frets: " + frets[0] + " " + frets[1] + " " + frets[2] + " " + frets[3] + " " + frets[4] + " " + frets[5] + " ");
 		int[] fingers = chord.getFingers();
+		ChordHelper.recudeFretPosition(frets, chord);
+		int position = chord.getPosition();
+		
+		drawBaseLines(canvas, position);
+		drawChordName(canvas, chord.getName());
+		drawFretPosition(canvas, position);
+		Log.i("Debug", "position: " + position);
+		Log.i("Debug", "frets: " + frets[0] + " " + frets[1] + " " + frets[2] + " " + frets[3] + " " + frets[4] + " " + frets[5] + " ");
 		for (int i = 0; i <= 5; ++i) {
 			drawFingerPosition(canvas, i + 1, frets[i], fingers[i]);
 		}

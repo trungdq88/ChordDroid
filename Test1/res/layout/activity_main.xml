@@ -47,5 +47,13 @@
                     android:layout_alignTop="@+id/chord1"
                     android:layout_marginTop="46dp"
                     android:text="Button" />
+
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:ems="10" />
         
 </RelativeLayout>

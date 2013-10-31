@@ -24,8 +24,10 @@ public class ChordHelper {
 	 * Move fret: -1 14 15 12 14 12 => -1 3 4 1 3 1
 	 * 
 	 * @param frets
+	 * @param c
+	 *            use to change chord position variable
 	 */
-	public static void recudeFretPosition(int[] frets, int position) {
+	public static void recudeFretPosition(int[] frets, Chord c) {
 		int min = 99;
 
 		// Find the min
@@ -42,6 +44,15 @@ public class ChordHelper {
 				if (frets[i] > -1) {
 					frets[i] -= (min - 1);
 				}
+			}
+		} else {
+			if (min > 1) {
+				for (int i = 0; i <= 5; ++i) {
+					if (frets[i] > -1) {
+						frets[i] -= (min - 1);
+					}
+				}
+				c.setPosition(c.getPosition() + (min - 1));
 			}
 		}
 	}
@@ -74,22 +85,27 @@ public class ChordHelper {
 		}
 
 		Position[] positions = ChordLibrary.baseChords.get(equavilentChord);
-		if (c.getPosition() > 0 && positions[1] != null) {
-			c.setFrets(positions[1].getFrets());
-			c.setFingers(positions[1].getFingers());
+		if (c.getPosition() > 0) {
+			if (positions[1] != null) {
+				// Log.i("Debug", "Use position 1");
+				c.setFrets(positions[1].getFrets());
+				c.setFingers(positions[1].getFingers());
+			} else {
+				// Log.i("Debug", "Use position 0");
+				c.setFrets(positions[0].getFrets());
+				c.setFingers(positions[0].getFingers());
+				increaseEveryFretsByOne(c);
+			}
 		} else {
 			c.setFrets(positions[0].getFrets());
 			c.setFingers(positions[0].getFingers());
-			if (positions[1] == null) {
-				increaseEveryFretsByOne(c);
-			}
 		}
-		
-		
+
 		return c;
 	}
 
 	private static void increaseEveryFretsByOne(Chord c) {
+		Log.i("Debug", "Increase: fret before:" + Arrays.toString(c.getFrets()));
 		int[] newFrets = new int[6];
 		for (int i = 0; i <= 5; ++i) {
 			if (c.getFrets()[i] > -1) {
