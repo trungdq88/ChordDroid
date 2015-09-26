@@ -65,7 +65,7 @@ Build the library
 
     ./gradlew assemble
 
-Check `chorddroid/build/outputs/arr` directory to find `chorddroid-release.arr` files.
+Check `ChordDroidLibrary/build/outputs/arr` directory to find `ChordDroidLibrary-release.arr` files.
 
 Add library to your project
 ===
@@ -78,7 +78,7 @@ Add `flatDir` to your `repositories` tag:
     repositories {
         ...
         flatDir {
-            dirs 'libs/chorddroid'
+            dirs 'libs'
         }
     }
     
@@ -86,7 +86,7 @@ Add `compile` to your `dependencies` tag:
 
     dependencies {
         ...
-        compile(name:'chorddroid-release', ext:'aar')
+        compile(name:'ChordDroidLibrary-release', ext:'aar')
     }
     
     
