@@ -1,7 +1,7 @@
 What it looks like
 ========
 
-![screen shot](https://raw.githubusercontent.com/trungdq88/ChordDroid/master/screenshot.png)
+![screen shot](https://raw.githubusercontent.com/trungdq88/ChordDroid/master/screenshot-1.png)
 
 Features
 ========
