@@ -1,7 +1,18 @@
 What it looks like
 ========
 
-[Image Here]
+![screen shot](https://raw.githubusercontent.com/trungdq88/ChordDroid/master/screenshot.png)
+
+Features
+========
+
+- Render chord based on chord name
+- Support normal chords and advanced chords: maj, add, sus, dim, aug...
+- Draw **all** hand position for each chord
+- Transpose chord
+- Resizeable bitmap
+- Support Android API >= 4
+
 
 Usage
 ===
