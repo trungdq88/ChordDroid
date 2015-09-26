@@ -1,12 +1,13 @@
 What it looks like
------
+========
 
 [Image Here]
 
 Usage
------
+===
 
 Draw to an existing `ImageView`:
+---
 
     // Prepare data
     Resources resources = activity.getResources();
@@ -24,6 +25,7 @@ Draw to an existing `ImageView`:
     yourImageView.setImageDrawable(theReturnValue);
 
 Use `ChordTextureView`:
+---
 
 In your layout:
 
@@ -40,7 +42,7 @@ In your code:
     chord.drawChord("Am", 0);
 
 Chord Helper
-------------
+===
 
     ChordHelper.transpose(String chordName, int distance)
     ChordHelper.getChord(String chordName, int position)
@@ -48,14 +50,14 @@ Chord Helper
 
 
 Build the library
------------------
+===
 
     ./gradlew assemble
 
 Check `chorddroid/build/outputs/arr` directory to find `chorddroid-release.arr` files.
 
 Add library to your project
----------------------------
+===
 
 1. Copy `aar` file to your `libs` directory
 2. Add following section to your gradle file:
