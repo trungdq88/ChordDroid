@@ -1,1 +1,1 @@
-include ':chorddroid'
+include ':chorddroid', ':ChordDroidExample'

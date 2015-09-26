@@ -14,7 +14,7 @@ Draw to an existing `ImageView`:
     int width = 200;
     int height = 200;
     String chordName = "Am";
-    int position = 0; // fret position index (0 to 12)
+    int position = 0; // fret position index (0 to 8)
     int transpose = 0; // transpose distance (-12 to 12)
     
     // Draw chord
@@ -22,7 +22,7 @@ Draw to an existing `ImageView`:
         resources, width, height, chordName, position, transpose);
         
     // Display chord to your image view
-    yourImageView.setImageDrawable(theReturnValue);
+    yourImageView.setImageDrawable(chord);
 
 Use `ChordTextureView`:
 ---
