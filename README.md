@@ -8,10 +8,10 @@ Features
 
 - Render chord based on chord name
 - Support normal chords and advanced chords: maj, add, sus, dim, aug...
-- Draw **all** hand position for each chord
+- Draw **all** hand positions for each chord
 - Transpose chord
 - Resizeable bitmap
-- Support Android API >= 4
+- Supports Android API >= 4
 
 
 Usage
